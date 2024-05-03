@@ -1,0 +1,42 @@
+name: darthcine
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=123456
+    ports:
+      - 5432:5432
+    volumes:
+      - cine-pgdata:/var/lib/postgresql/data
+
+  mariadb:
+    image: mariadb
+    environment:
+      - MARIADB_ROOT_PASSWORD=root
+    ports:
+      - 3306:3306
+    volumes:
+      - cine-mariadata:/var/lib/mysql/data
+
+  mongodb:
+    image: mongo
+    environment:
+     - MONGO_INITDB_ROOT_USERNAME=root
+     - MONGO_INITDB_ROOT_PASSWORD=root
+    ports:
+      - 27017:27017
+    volumes:
+      - cine-mongodata:/var/lib/mongodb/data
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+volumes:
+  cine-pgdata:
+  cine-mongodata:
+  cine-mariadata:
