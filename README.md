@@ -11,3 +11,7 @@ Esse projeto é somente para fins educacionais.
 
 ## Perarando o Ambiente
 
+Iniciando os serviços do docker:
+```
+docker compose up -d
+```
