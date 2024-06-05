@@ -9,7 +9,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - cine-pgdata:/var/lib/postgresql/data
+      - ./scripts/postgres:/docker-entrypoint-initdb.d
 
   mariadb:
     image: mariadb
@@ -17,8 +17,6 @@ services:
       - MARIADB_ROOT_PASSWORD=root
     ports:
       - 3306:3306
-    volumes:
-      - cine-mariadata:/var/lib/mysql/data
 
   mongodb:
     image: mongo
@@ -27,16 +25,9 @@ services:
      - MONGO_INITDB_ROOT_PASSWORD=root
     ports:
       - 27017:27017
-    volumes:
-      - cine-mongodata:/var/lib/mongodb/data
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
     ports:
       - 5672:5672
       - 15672:15672
-
-volumes:
-  cine-pgdata:
-  cine-mongodata:
-  cine-mariadata:
